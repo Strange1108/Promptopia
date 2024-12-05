@@ -11,10 +11,14 @@ const Nav = () => {
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     (async () => {
-      const res = await getProviders();
-      setProviders(res);
+      try {
+        const res = await getProviders();
+        setProviders(res);
+      } catch (error) {
+        console.error("Failed to fetch providers:", error);
+      }
     })();
   }, []);
 
